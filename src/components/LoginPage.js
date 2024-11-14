@@ -36,7 +36,7 @@ const LoginPage = () => {
       localStorage.setItem("username", response.data.username);
 
       // Navigate to home page
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       if (err.response) {
         setError(err.response.data.message || "Invalid credentials");
