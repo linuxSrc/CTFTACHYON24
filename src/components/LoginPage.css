@@ -1,67 +1,136 @@
-/* src/components/LoginPage.css */
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+/* Container */
 .login-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+/* Form Styles */
+.login-form .form-group {
+  margin-bottom: 15px;
+}
+
+.login-form .form-group label {
+  display: block;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.login-form .form-group input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.login-form .form-group button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.login-form .form-group button:hover {
+  background-color: #218838;
+}
+
+/* Error Message */
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+/* Links */
+.links {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.links a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-container {
+    max-width: 90%;
+    padding: 15px;
   }
-  
+
   h2 {
-    text-align: center;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
   }
-  
-  .login-form .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .login-form .form-group label {
-    display: block;
-    font-weight: bold;
-  }
-  
-  .login-form .form-group input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .login-form .form-group button {
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .login-form .form-group button:hover {
-    background-color: #218838;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 14px;
-  }
-  
-  .links {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
+
+  .login-form .form-group label,
+  .login-form .form-group input,
+  .login-form .form-group button,
   .links a {
-    color: #007bff;
-    text-decoration: none;
+    font-size: 1rem;
   }
-  
-  .links a:hover {
-    text-decoration: underline;
+
+  .login-form .form-group input {
+    padding: 8px;
   }
-  
+
+  .login-form .form-group button {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    max-width: 100%;
+    margin: 30px auto;
+    margin-top: 20vh;
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .login-form .form-group label,
+  .login-form .form-group input,
+  .login-form .form-group button,
+  .links a {
+    font-size: 0.9rem;
+  }
+
+  .login-form .form-group input {
+    padding: 8px;
+  }
+
+  .login-form .form-group button {
+    padding: 8px;
+    font-size: 1rem;
+  }
+}
