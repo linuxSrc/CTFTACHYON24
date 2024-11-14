@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import "./Signup.css";
 
-const API_URL = "http://localhost:5000";
+const API_URL = "https://ctf-backend-03il.onrender.com";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
