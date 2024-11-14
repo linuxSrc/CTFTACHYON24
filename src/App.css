@@ -1,9 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
-
 /* src/App.css */
 
 /* Global styling for the app container */
@@ -42,62 +40,12 @@
   text-decoration: underline;
 }
 
-/* Hamburger menu for small screens */
-.hamburger {
-  display: none;
-  font-size: 1.5rem;
-  color: white;
-  cursor: pointer;
-}
-
 /* Main content area styling */
 .main-content {
   flex-grow: 1;
+  /* padding: 20px; */
 }
 
 h2 {
   color: #333;
-}
-
-/* Responsive design for the navbar */
-@media (max-width: 768px) {
-  .navbar ul {
-    display: none;
-    flex-direction: column;
-    background-color: #007bff;
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
-  }
-
-  .navbar ul.show {
-    display: flex;
-  }
-
-  .hamburger {
-    display: inline-block;
-  }
-
-  .navbar li {
-    margin: 10px 0;
-  }
-}
-
-/* Adjustments for smaller screens */
-@media (max-width: 600px) {
-  .navbar {
-    padding: 10px;
-  }
-
-  .navbar a {
-    font-size: 0.9rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  .main-content {
-    /* padding: 10px; */
-  }
 }
