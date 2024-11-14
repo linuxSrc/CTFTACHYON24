@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./ProfilePage.css";
 
+const API_URL = "https://ctf-backend-03il.onrender.com";
+
 const ProfilePage = () => {
   const [profile, setProfile] = useState(null);
   const [editMode, setEditMode] = useState(false);
@@ -16,14 +18,31 @@ const ProfilePage = () => {
   const fetchProfile = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("/profile", {
-        headers: { Authorization: `Bearer ${token}` },
+      if (!token) {
+        setError("No authentication token found");
+        setLoading(false);
+        return;
+      }
+
+      const response = await axios.get(`${API_URL}/profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       });
-      setProfile(response.data);
-      setError(null);
+
+      if (response.status === 200) {
+        setProfile(response.data);
+        setError(null);
+      }
     } catch (err) {
-      setError("Failed to fetch profile data");
       console.error("Profile fetch error:", err);
+      setError(err.response?.data?.message || "Failed to fetch profile data");
+      if (err.response?.status === 401) {
+        // Handle unauthorized access
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+      }
     } finally {
       setLoading(false);
     }
@@ -40,26 +59,58 @@ const ProfilePage = () => {
   const handleSave = async () => {
     try {
       const token = localStorage.getItem("token");
+      if (!token) {
+        setError("No authentication token found");
+        return;
+      }
+
       await axios.put(
-        "https://ctf-backend-03il.onrender.com/profile",
+        `${API_URL}/profile`,
         { email: profile.email },
-        { headers: { Authorization: `Bearer ${token}` } }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
+
       setEditMode(false);
-      fetchProfile();
+      await fetchProfile();
       setError(null);
     } catch (err) {
       setError(err.response?.data?.message || "Error updating profile");
     }
   };
 
-  if (loading) return <div>Loading profile...</div>;
-  if (error) return <div className="error-message">{error}</div>;
-  if (!profile) return <div>No profile data available</div>;
+  if (loading) {
+    return (
+      <div className="profile-container">
+        <div className="loading">Loading profile...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="profile-container">
+        <div className="error-message">{error}</div>
+      </div>
+    );
+  }
+
+  if (!profile) {
+    return (
+      <div className="profile-container">
+        <div className="error-message">No profile data available</div>
+      </div>
+    );
+  }
 
   return (
     <div className="profile-container">
       <h2>User Profile</h2>
+      {error && <div className="error-message">{error}</div>}
       <div className="profile-info">
         <label>Username:</label>
         <p>{profile.username}</p>
