@@ -17,7 +17,7 @@ const LoginPage = () => {
 
     try {
       const response = await axios.post(
-        `${API_URL}/profile`,
+        `${API_URL}/login`,
         {
           username,
           password,
