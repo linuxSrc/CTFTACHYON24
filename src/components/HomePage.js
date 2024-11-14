@@ -28,7 +28,7 @@ const HomePage = () => {
         <div className="home-content">
           <h1>Welcome to CHAKARAVYUH-1.0 CTF</h1>
           <p>"Unravel the layers, conquer the challenge!"</p>
-          <img src="./images/image.png" alt="CTF Challenge" className="ctf-image" />
+          {/* <img src="./images/image.png" alt="CTF Challenge" className="ctf-image" /> */}
           <div className="info-box">
             <h2>About the Challenge</h2>
             <p>This CTF event will test your skills in various cybersecurity areas.</p>
