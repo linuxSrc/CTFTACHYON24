@@ -1,8 +1,8 @@
 // src/components/Dashboard.js
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './Dashboard.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   const [challenges, setChallenges] = useState([]);
@@ -12,7 +12,8 @@ const Dashboard = () => {
   // Fetch challenges and leaderboard data when the component mounts
   useEffect(() => {
     // Fetch challenges data (mocked here for the example)
-    axios.get('http://localhost:5000/challenges') // Adjust the endpoint for challenges
+    axios
+      .get("https://ctf-backend-03il.onrender.com/challenges") // Adjust the endpoint for challenges
       .then((response) => {
         setChallenges(response.data);
       })
@@ -21,7 +22,8 @@ const Dashboard = () => {
       });
 
     // Fetch leaderboard data (mocked here for the example)
-    axios.get('http://localhost:5000/leaderboard') // Adjust the endpoint for leaderboard
+    axios
+      .get("https://ctf-backend-03il.onrender.com/leaderboard") // Adjust the endpoint for leaderboard
       .then((response) => {
         setLeaderboard(response.data);
       })
@@ -30,7 +32,8 @@ const Dashboard = () => {
       });
 
     // Fetch user status (mocked here for the example)
-    axios.get('http://localhost:5000/user-status') // Adjust the endpoint for user status
+    axios
+      .get("https://ctf-backend-03il.onrender.com/user-status") // Adjust the endpoint for user status
       .then((response) => {
         setUserStatus(response.data);
       })
@@ -47,9 +50,15 @@ const Dashboard = () => {
         <h3>Your Progress</h3>
         {userStatus ? (
           <div>
-            <p><strong>Username:</strong> {userStatus.username}</p>
-            <p><strong>Challenges Solved:</strong> {userStatus.solvedChallenges}</p>
-            <p><strong>Score:</strong> {userStatus.score}</p>
+            <p>
+              <strong>Username:</strong> {userStatus.username}
+            </p>
+            <p>
+              <strong>Challenges Solved:</strong> {userStatus.solvedChallenges}
+            </p>
+            <p>
+              <strong>Score:</strong> {userStatus.score}
+            </p>
           </div>
         ) : (
           <p>Loading user progress...</p>
@@ -64,7 +73,9 @@ const Dashboard = () => {
               <div key={challenge.id} className="challenge-card">
                 <h4>{challenge.title}</h4>
                 <p>{challenge.description}</p>
-                <button onClick={() => window.location.href = challenge.url}>Start Challenge</button>
+                <button onClick={() => (window.location.href = challenge.url)}>
+                  Start Challenge
+                </button>
               </div>
             ))
           ) : (

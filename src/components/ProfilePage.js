@@ -16,7 +16,7 @@ const ProfilePage = () => {
   const fetchProfile = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:5000/profile", {
+      const response = await axios.get("/profile", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProfile(response.data);
@@ -41,7 +41,7 @@ const ProfilePage = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        "http://localhost:5000/profile",
+        "https://ctf-backend-03il.onrender.com/profile",
         { email: profile.email },
         { headers: { Authorization: `Bearer ${token}` } }
       );
