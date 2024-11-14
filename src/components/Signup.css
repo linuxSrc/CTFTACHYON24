@@ -16,6 +16,7 @@ body {
 .signup-container {
   max-width: 500px;
   margin: 50px auto;
+  margin-top: 20vh;
   padding: 20px;
   background-color: #ffffff;
   border-radius: 8px;
