@@ -1,28 +1,27 @@
 /* Reset */
 * {
-  margin: 0%;
-  padding: 0%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Full-screen background image */
 .home-container {
   height: 100vh;
   width: 100%;
-  background-image: url('./video/2.jpeg'); 
+  background-image: url('./video/2.jpeg');
   background-size: cover;
-  background-position: center; 
-  background-repeat: no-repeat; 
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
-  left: 0;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
 }
 
-/* Dark overlay for better readability */
 .overlay {
-  background: rgba(0, 0, 0, 0.5); 
+  background: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
   display: flex;
@@ -42,27 +41,70 @@
   background-color: rgba(0, 0, 0, 0.6);
   padding: 10px 0;
   text-align: center;
+  z-index: 100;
 }
 
-.navbar ul {
-  list-style-type: none;
-  padding: 0;
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: auto;
 }
 
-.navbar li {
-  display: inline;
+.logo {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+}
+
+.navbar-links li {
   margin: 0 15px;
-  line-height: 5vh;
 }
 
-.navbar a {
+.navbar-links a {
   color: white;
   text-decoration: none;
-  font-size: 5.1rem;
+  font-size: 1rem;
 }
 
-.navbar a:hover {
+.navbar-links a:hover {
   text-decoration: underline;
+}
+
+/* Hamburger menu icon */
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* Hide navbar links on mobile */
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 5vh;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .navbar-links.navbar-links-visible {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
 }
 
 /* Home content */
@@ -75,11 +117,9 @@
 .home-content h1 {
   font-size: 5rem;
   margin-bottom: 20px;
-  font-weight:bolder;
+  font-weight: bolder;
   color: #ffffff;
   font-family: "Silkscreen", serif;
-  font-weight: 400;
-  font-style: normal;
 }
 
 .home-content p {
@@ -94,7 +134,6 @@
   border-radius: 10px;
 }
 
-/* Info box for CTF challenge description */
 .info-box {
   background-color: rgba(0, 0, 0, 0.7);
   padding: 20px;
@@ -133,17 +172,17 @@
   background-color: #0056b3;
 }
 
-/* Responsive design */
+/* Responsive design for other elements */
 @media (max-width: 768px) {
   .home-content h1 {
-      font-size: 2rem;
+    font-size: 2rem;
   }
 
   .home-content p {
-      font-size: 1rem;
+    font-size: 1rem;
   }
 
   .ctf-image {
-      width: 80%;
+    width: 80%;
   }
 }
