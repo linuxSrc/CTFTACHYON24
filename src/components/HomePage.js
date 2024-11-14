@@ -30,8 +30,8 @@ const HomePage = () => {
           <p>"Unravel the layers, conquer the challenge!"</p>
           {/* <img src="./images/image.png" alt="CTF Challenge" className="ctf-image" /> */}
           <div className="info-box">
-            <h2>About the Challenge</h2>
-            <p>This CTF event will test your skills in various cybersecurity areas.</p>
+            <h4>Chakravyuh-1.0 is a Cyber Security Capture the Flag (CTF) event inspired by Naruto. This challenge tests participants in web security, cryptography, and system vulnerabilities. Compete as a cyber shinobi, solve unique challenges, and unlock your hidden potential in this thrilling, puzzle-based cybersecurity showdown!</h4>
+            {/* <p>This CTF event will test your skills in various cybersecurity areas.</p> */}
             <button className="cta-button">
               <a href="/signup">Join Now</a>
             </button>
