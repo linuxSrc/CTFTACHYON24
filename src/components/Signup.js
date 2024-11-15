@@ -67,6 +67,7 @@ const Signup = () => {
   return (
     <div className="signup-container">
       <h2>Create a New Account</h2>
+      <p>"The Ctf Challenge is exclusively for the students"</p>
       <form onSubmit={handleSubmit}>
         {error && <p className="error-message">{error}</p>}
 
