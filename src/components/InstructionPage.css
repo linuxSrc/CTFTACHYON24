@@ -1,0 +1,52 @@
+.instruction-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .instruction-page h1 {
+    text-align: center;
+    color: #007bff;
+  }
+  
+  .instruction-section {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .instruction-section h2 {
+    color: #0056b3;
+    margin-bottom: 10px;
+  }
+  
+  .instruction-section p, .instruction-section li {
+    margin-bottom: 10px;
+  }
+  
+  .instruction-section ul {
+    padding-left: 20px;
+  }
+  
+  .instruction-button {
+    display: block;
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .instruction-button:hover {
+    background-color: #0056b3;
+  }
+  

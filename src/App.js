@@ -7,6 +7,8 @@ import Signup from './components/Signup';
 import HomePage from './components/HomePage';
 import ProfilePage from './components/ProfilePage';
 import ChallengeDashboard from './components/ChallengeDashboard';
+import InstructionPage from './components/InstructionPage'; // Importing InstructionPage
+
 import './App.css';
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
             <li><Link to="/dashboard">Dashboard</Link></li>
             <li><Link to="/profile">Profile</Link></li>
             <li><Link to="/challenge-dashboard">Challenges</Link></li>
+            <li><Link to="/instructions">How to Play</Link></li> {/* Adding link for instructions */}
           </ul>
         </nav>
 
@@ -33,6 +36,7 @@ function App() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/challenge-dashboard" element={<ChallengeDashboard />} />
             <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/instructions" element={<InstructionPage />} /> {/* Adding route for InstructionPage */}
           </Routes>
         </div>
       </div>
