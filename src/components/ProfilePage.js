@@ -90,7 +90,7 @@ const ProfilePage = () => {
 
   // Handle navigation to challenge dashboard
   const handleGoToChallenges = () => {
-    navigate('/dashboard');
+    navigate('https://ctftachyon-24.vercel.app/challenge-dashboard');
   };
 
   if (loading) {
