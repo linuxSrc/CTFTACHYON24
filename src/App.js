@@ -8,6 +8,7 @@ import HomePage from './components/HomePage';
 import ProfilePage from './components/ProfilePage';
 import ChallengeDashboard from './components/ChallengeDashboard';
 import InstructionPage from './components/InstructionPage'; // Importing InstructionPage
+import PasswordCrackingChallenge from './components/PasswordCrackingChallenge';
 
 import './App.css';
 
@@ -37,6 +38,8 @@ function App() {
             <Route path="/challenge-dashboard" element={<ChallengeDashboard />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/instructions" element={<InstructionPage />} /> {/* Adding route for InstructionPage */}
+            <Route path="/challenge2" element={<PasswordCrackingChallenge />} />
+            <Route path="/challenge/password-cracking" element={<PasswordCrackingChallenge />} /> {/* Additional route for PasswordCrackingChallenge */}
           </Routes>
         </div>
       </div>
