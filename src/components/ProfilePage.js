@@ -1,6 +1,6 @@
-// src/components/ProfilePage.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./ProfilePage.css";
 
 const API_URL = "https://ctf-backend-03il.onrender.com";
@@ -10,7 +10,9 @@ const ProfilePage = () => {
   const [editMode, setEditMode] = useState(false);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
+  // Fetch profile data on component mount
   useEffect(() => {
     fetchProfile();
   }, []);
@@ -39,7 +41,7 @@ const ProfilePage = () => {
       console.error("Profile fetch error:", err);
       setError(err.response?.data?.message || "Failed to fetch profile data");
       if (err.response?.status === 401) {
-        // Handle unauthorized access
+        // Handle unauthorized access and redirect to login
         localStorage.removeItem("token");
         window.location.href = "/login";
       }
@@ -48,14 +50,17 @@ const ProfilePage = () => {
     }
   };
 
+  // Toggle edit mode for profile
   const handleEditToggle = () => {
     setEditMode(!editMode);
   };
 
+  // Handle input change when editing profile
   const handleChange = (e) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
   };
 
+  // Handle saving profile changes
   const handleSave = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -76,11 +81,16 @@ const ProfilePage = () => {
       );
 
       setEditMode(false);
-      await fetchProfile();
+      await fetchProfile(); // Re-fetch updated profile
       setError(null);
     } catch (err) {
       setError(err.response?.data?.message || "Error updating profile");
     }
+  };
+
+  // Handle navigation to challenge dashboard
+  const handleGoToChallenges = () => {
+    navigate('/dashboard');
   };
 
   if (loading) {
@@ -147,6 +157,12 @@ const ProfilePage = () => {
         ) : (
           <button onClick={handleEditToggle}>Edit Profile</button>
         )}
+      </div>
+
+      <div className="profile-buttons">
+        <button onClick={handleGoToChallenges} className="challenge-button">
+          Go to Challenges
+        </button>
       </div>
     </div>
   );

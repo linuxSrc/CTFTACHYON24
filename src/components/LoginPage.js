@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./LoginPage.css";
 
-const API_URL = "https://ctf-backend-03il.onrender.com";
+const API_URL = "https://ctf-backend-03il.onrender.com"; // Backend API URL
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -13,31 +13,23 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setError(""); // Reset error message before submitting
 
     try {
       const response = await axios.post(
-        `${API_URL}/login`,
-        {
-          username,
-          password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        `${API_URL}/login`, // API endpoint for login
+        { username, password },
+        { headers: { "Content-Type": "application/json" } }
       );
 
-      // Store JWT token
+      // Store JWT token and username in local storage upon successful login
       localStorage.setItem("token", response.data.access_token);
-
-      // Store username for display purposes
       localStorage.setItem("username", response.data.username);
 
-      // Navigate to home page
+      // Navigate to dashboard after login success
       navigate("/dashboard");
     } catch (err) {
+      // Handle errors based on the response
       if (err.response) {
         setError(err.response.data.message || "Invalid credentials");
       } else if (err.request) {
@@ -53,7 +45,7 @@ const LoginPage = () => {
     <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        {error && <p className="error-message">{error}</p>}
+        {error && <p className="error-message">{error}</p>} {/* Display error if any */}
 
         <div className="form-group">
           <label htmlFor="username">Username</label>
@@ -77,9 +69,7 @@ const LoginPage = () => {
           />
         </div>
 
-        <button type="submit" className="submit-button">
-          Login
-        </button>
+        <button type="submit" className="submit-button">Login</button>
       </form>
 
       <div className="signup-link">
