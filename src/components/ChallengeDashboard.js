@@ -9,8 +9,8 @@ const challenges = [
     difficulty: 'Easy',
     status: 'Unlocked',
     description: 'Solve a basic SQL injection vulnerability.',
-    url: 'https://frontend-ec0.pages.dev/', // Internal route for this challenge
-    correctCode: 'youfoundtheflag739',
+    url: '/challenge/sql-injection', // Internal route for this challenge
+    correctCode: 'SQL123',
   },
   {
     id: 2,

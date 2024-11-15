@@ -1,0 +1,19 @@
+.countdown-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #282c34;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .countdown-timer {
+    margin: 20px;
+    font-size: 48px;
+    font-weight: bold;
+    color: #00ff00;
+  }
+  
