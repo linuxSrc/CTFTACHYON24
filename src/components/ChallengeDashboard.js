@@ -1,6 +1,4 @@
-// frontend/src/ChallengeDashboard.js
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ChallengeDashboard.css";
 import axios from "axios";
 
@@ -11,7 +9,9 @@ const challenges = [
     difficulty: "Easy",
     status: "Unlocked",
     description: "Solve a basic SQL injection vulnerability.",
-    url: "https://example.com/challenge1", // Challenge question link
+    url: "https://frontend-ec0.pages.dev/",
+    flag: "FLAG{sql_injection_found}",
+    score: 100,
   },
   {
     id: 2,
@@ -20,6 +20,8 @@ const challenges = [
     status: "Locked",
     description: "Explore Cross-Site Scripting (XSS) in a form.",
     url: "https://example.com/challenge2",
+    flag: "FLAG{pass#123}",
+    score: 200,
   },
   {
     id: 3,
@@ -28,48 +30,73 @@ const challenges = [
     status: "Locked",
     description: "Bypass authentication using CSRF techniques.",
     url: "https://example.com/challenge3",
+    flag: "FLAG{chhin_tapak_dam_dam}",
+    score: 300,
   },
 ];
 
 const ChallengeDashboard = () => {
-  const [completed, setCompleted] = useState([false, false, false]); // Track completion status
-  const [userFlags, setUserFlags] = useState(["", "", ""]); // Track user inputs
-  const [error, setError] = useState(["", "", ""]); // Track error messages
+  const [completed, setCompleted] = useState([false, false, false]);
+  const [flags, setFlags] = useState(["", "", ""]);
+  const [message, setMessage] = useState(["", "", ""]);
+  const [leaderboard, setLeaderboard] = useState([]);
+
+  useEffect(() => {
+    fetchLeaderboard();
+  }, []);
+
+  const fetchLeaderboard = async () => {
+    try {
+      const res = await axios.get("/leaderboard");
+      setLeaderboard(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleComplete = (index) => {
     const newCompleted = [...completed];
     newCompleted[index] = true;
     setCompleted(newCompleted);
+    fetchLeaderboard();
   };
 
   const handleFlagChange = (index, value) => {
-    const newUserFlags = [...userFlags];
-    newUserFlags[index] = value;
-    setUserFlags(newUserFlags);
+    const newFlags = [...flags];
+    newFlags[index] = value;
+    setFlags(newFlags);
   };
 
   const handleFlagSubmit = async (index) => {
     try {
-      const token = localStorage.getItem("access_token"); // Assuming token is stored in localStorage
-      const response = await axios.post(
-        `/submit-flag/${challenges[index].id}`,
-        { flag: userFlags[index] },
-        { headers: { Authorization: `Bearer ${token}` } }
+      const token = localStorage.getItem("access_token"); // Assuming JWT is stored here
+      const res = await axios.post(
+        "/submit-flag",
+        {
+          challenge_id: challenges[index].id,
+          flag: flags[index],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
-      if (response.data.message === "Correct flag! Score updated.") {
+      setMessage((prev) => {
+        const newMsg = [...prev];
+        newMsg[index] = res.data.message;
+        return newMsg;
+      });
+
+      if (res.data.message === "Correct flag! Score updated.") {
         handleComplete(index);
-        setError((prevError) => {
-          const newError = [...prevError];
-          newError[index] = "";
-          return newError;
-        });
       }
     } catch (err) {
-      setError((prevError) => {
-        const newError = [...prevError];
-        newError[index] = err.response?.data?.message || "Submission failed";
-        return newError;
+      setMessage((prev) => {
+        const newMsg = [...prev];
+        newMsg[index] = err.response?.data?.message || "Error submitting flag.";
+        return newMsg;
       });
     }
   };
@@ -107,15 +134,13 @@ const ChallengeDashboard = () => {
                 <input
                   type="text"
                   placeholder="Enter your flag"
-                  value={userFlags[index]}
+                  value={flags[index]}
                   onChange={(e) => handleFlagChange(index, e.target.value)}
                 />
                 <button onClick={() => handleFlagSubmit(index)}>
                   Submit Flag
                 </button>
-                {error[index] && (
-                  <p className="error-message">{error[index]}</p>
-                )}
+                {message[index] && <p className="message">{message[index]}</p>}
               </div>
             )}
             {completed[index] && (
@@ -125,6 +150,17 @@ const ChallengeDashboard = () => {
             )}
           </div>
         ))}
+      </div>
+      <div className="leaderboard">
+        <h3>Leaderboard</h3>
+        <ul>
+          {leaderboard.map((user, idx) => (
+            <li key={idx}>
+              {user.username} - {user.solvedChallenges} Solved - {user.score}{" "}
+              Points
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
