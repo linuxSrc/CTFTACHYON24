@@ -23,7 +23,7 @@ const HomePage = () => {
             <ul className={`navbar-links ${menuOpen ? 'navbar-links-visible' : ''}`}>
               <li><a href="/">Home</a></li>
               <li><a href="/login">Login</a></li>
-              <li><a href="/signup">Sign Up</a></li>
+              <li><a href="/signup">SignUp</a></li>
             </ul>
             <div className="hamburger" onClick={toggleMenu}>
               &#9776; {/* Hamburger icon */}

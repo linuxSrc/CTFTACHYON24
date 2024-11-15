@@ -15,10 +15,11 @@ body {
 /* Signup Container */
 .signup-container {
   max-width: 500px;
+  width: 90%; /* Allow it to scale dynamically */
   margin: 50px auto;
   margin-top: 20vh;
   padding: 20px;
-  background-color: #ffffffcd;
+  background-color: rgba(255, 255, 255, 0.8); /* Transparent white */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -29,7 +30,8 @@ body {
   font-size: 2rem;
   margin-bottom: 20px;
 }
-.signup-container p{
+
+.signup-container p {
   font-size: 1rem;
   color: #ff0606;
   margin-bottom: 20px;
@@ -88,20 +90,20 @@ form {
   margin-bottom: 15px;
   text-align: center;
 }
-.signup-container .form-group {
-  margin-bottom: 15px;
-}
 
+/* Input with Icon */
 .input-with-icon {
   display: flex;
   align-items: center;
 }
 
 .user-id-icon {
-  width: 20px; /* Adjust size as needed */
-  height: 20px;
-  margin-right: 8px;
+  width: 1.5rem; /* Scales dynamically */
+  height: 1.5rem;
+  margin-right: 0.5rem;
 }
+
+/* Camera and Preview */
 .camera-container {
   display: flex;
   gap: 10px;
@@ -109,21 +111,27 @@ form {
 }
 
 .video-preview {
-  width: 100px;
-  height: 100px;
+  flex: 0 0 auto;
+  width: 25%;
+  max-width: 100px;
+  height: auto;
   background-color: #ddd;
+  border-radius: 4px;
 }
 
 .capture-button, .camera-button {
   padding: 5px 10px;
+  font-size: 0.9rem;
   cursor: pointer;
 }
 
 .image-preview img {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  max-width: 100px;
+  height: auto;
   margin-top: 10px;
   border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 /* Responsive Design */
@@ -150,6 +158,10 @@ form {
   .submit-button {
     padding: 8px;
     font-size: 1.1rem;
+  }
+
+  .video-preview {
+    width: 80px;
   }
 }
 
@@ -178,5 +190,14 @@ form {
   .submit-button {
     padding: 8px;
     font-size: 1rem;
+  }
+
+  .video-preview {
+    width: 60px;
+  }
+
+  .user-id-icon {
+    width: 1rem;
+    height: 1rem;
   }
 }
