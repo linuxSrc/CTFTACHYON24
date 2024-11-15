@@ -90,7 +90,7 @@ const ProfilePage = () => {
 
   // Handle navigation to challenge dashboard
   const handleGoToChallenges = () => {
-    navigate("challenge-dashboard");
+    navigate("/challenge-dashboard");
   };
 
   if (loading) {
